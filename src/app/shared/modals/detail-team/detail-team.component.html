@@ -1,0 +1,228 @@
+<div class="modal-dialog modal-xl">
+  <div class="modal-content">
+    <div class="modal-body p-0">
+      <button class="btn btn-danger btn-sm modal-close" (click)="closeModal()">X</button>
+      <img [src]="image_theme" alt="">
+      <div class="content-info-team">
+        <div class="container-fluid">
+
+          <ul class="nav nav-tabs container" role="tablist">
+
+            <li class="nav-item">
+              <a class="nav-link  active" href="#description" role="tab" data-toggle="tab"
+                aria-selected="true">Description</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#stadium" role="tab" data-toggle="tab">Stadium</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#BadgeAndSweter" role="tab" data-toggle="tab">Badge & Sweter </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#players" role="tab" data-toggle="tab">Players </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#lastEvents" role="tab" data-toggle="tab">Last Events </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#nextEvents" role="tab" data-toggle="tab">Next Events </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#positions" role="tab" data-toggle="tab">Positions </a>
+            </li>
+
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+
+            <!--  -->
+            <div role="tabpanel" class="tab-pane active text-center p-5" id="description">
+              <img class="w-50" [src]="data.strTeamLogo" alt="">
+              <p class="text-justify">
+                {{data.strDescriptionEN}}
+              </p>
+            </div>
+            <!--  -->
+            <div role="tabpanel" class="tab-pane fade p-5 text-center" id="stadium">
+              <h6 class="text-center">Description</h6>
+              <p class="text-justify"> {{data.strStadiumDescription}} </p>
+              <img class="w-100" [src]="data.strStadiumThumb" alt="">
+            </div>
+            <!--  -->
+            <div role="tabpanel" class="tab-pane fade p-5" id="BadgeAndSweter">
+              <div class="row ">
+
+                <div class="col-md-6">
+                  <img class="w-100" [src]="data.strTeamBadge" alt="">
+                </div>
+
+                <div class="col-md-6">
+                  <img class="w-100" [src]="data.strTeamJersey" alt="">
+                </div>
+
+              </div>
+            </div>
+
+            <!--  -->
+            <div role="tabpanel" class="tab-pane text-center p-5" id="players">
+
+              <div class="row">
+                <div class="col-md-5 vh-80 overflow-auto ">
+                  <div class="row pointer" *ngFor="let player of players" (click)="selected = player">
+
+                    <div class="col-auto ">
+                      <img class="player" [src]="player.strCutout ? player.strCutout : '/assets/images/error-img.png'"
+                        alt="">
+                    </div>
+
+                    <div class="col-auto d-flex align-items-center justify-content-center ">
+                      <div>
+                        <b> {{player.strPlayer}} </b><br>
+                        <small class="opacity-gray"> ({{player.strBirthLocation}}) </small>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-md-7">
+
+                  <div *ngIf="!selected" class="text-center">
+                    <img class="w-75" src="/assets/images/error-img.png" alt="">
+                    <h2 class="opacity-gray"> Select Player</h2>
+                  </div>
+
+                  <div *ngIf="selected" class="w-100 content-info-player">
+                    <img class="w-100 bg-player" [src]="selected.strThumb" alt="">
+                    <div class="float-info-player text-center">
+                      <h3> {{selected.strPlayer}} </h3>
+                      <img class="w-50" [src]="selected.strRender" alt="">
+                      <div class="row justify-content-center">
+                        <div class="col-4">
+                          <b>Dorsal: {{selected.intSoccerXMLTeamID ? selected.intSoccerXMLTeamID : 'NO DEFINED'}}</b>
+                        </div>
+                        <div class="col-4">
+                          <b>Position: {{selected.strPosition ? selected.strPosition : 'NO DEFINED'}}</b>
+                        </div>
+                        <div class="col-4">
+                          <b>Gender: {{selected.strGender ? selected.strGender : 'NO DEFINED'}}</b>
+                        </div>
+                        <div class="col-4">
+                          <b>Nationality: {{selected.strNationality ? selected.strNationality : 'NO DEFINED'}}</b>
+                        </div>
+                        <div class="col-4">
+                          <b>Weigh: {{selected.strWeight ? selected.strWeight : 'NO DEFINED'}}</b>
+                        </div>
+                        <div class="col-4">
+                          <b>Height: {{selected.strHeight ? selected.strHeight : 'NO DEFINED'}}</b>
+                        </div>
+
+                        <div class="col-11 vh-20 overflow-auto p-2">
+                          <p class="text-justify">
+                            {{selected.strDescriptionEN}}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+            <!--  -->
+
+            <div role="tabpanel" class="tab-pane p-5" id="lastEvents">
+              <div class="row vh-60 mt-3">
+                <div class="col-sm-4">
+                  <div *ngFor="let event of lastEvents" (click)="lastEventSelected = event"
+                    class="p-2 table-bordered mb-2 pointer">
+
+                    <b class="opacity-gray"> {{event.strEvent}} </b><br>
+                    <b class="opacity-gray"><small> {{event.strFilename}} </small></b><br>
+                    <h2 class="text-center"> <small class="opacity-gray">({{event.intHomeScore}} -
+                        {{event.intAwayScore}})</small></h2>
+                  </div>
+                </div>
+                <div class="col-sm-8 text-center">
+                  <h2> Event Detail</h2>
+                  <div class="text-center" *ngIf="!lastEventSelected">
+                    <h1 class="display-4 font-weight-bold opacity-gray">¡</h1>
+                    <h1 class="display-4 bolder opacity-gray"> Select event</h1>
+                  </div>
+
+                  <div *ngIf="lastEventSelected">
+
+                    <h1 class="text-center">
+                      <small class="opacity-gray">({{lastEventSelected.intHomeScore}} -
+                        {{lastEventSelected.intAwayScore}})
+                      </small>
+                    </h1>
+
+                    <h2 class="text-center">
+                      <b class="opacity-gray"> {{lastEventSelected.strEvent}} </b><br>
+                    </h2>
+
+                    <h3 class="text-center">
+                      <b class="opacity-gray"><small> {{lastEventSelected.strFilename}} </small></b><br>
+                    </h3>
+
+                    <div class="p-5 table-bordered text-left row">
+                      <div class="col-sm-6">
+                        <h4>Home Score</h4>
+                        <h5 *ngFor="let pg of getGoals(lastEventSelected.strHomeGoalDetails)">Minute {{pg}} </h5>
+                        <h3 class="text-center" *ngIf="!getGoals(lastEventSelected.strHomeGoalDetails).length"> 0 </h3>
+                      </div>
+                      <div class="col-sm-6">
+                        <h4>Away Score</h4>
+                        <h5 *ngFor="let pg of getGoals(lastEventSelected.strAwayGoalDetails)">Minute {{pg}} </h5>
+                        <h3 class="text-center" *ngIf="!getGoals(lastEventSelected.strAwayGoalDetails).length"> 0 </h3>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!--  -->
+            <div role="tabpanel" class="tab-pane text-center p-5" id="nextEvents">
+              <div *ngFor="let event of nextEvents" (click)="lastEventSelected = event"
+                class="p-2 table-bordered mb-2 pointer">
+
+                <h1> <b class="opacity-gray"> {{event.strEvent}} </b><br></h1>
+                <b class="opacity-gray"><small> {{event.strFilename}} </small></b><br>
+              </div>
+            </div>
+
+            <!--  -->
+            <div role="tabpanel" class="tab-pane text-center p-5" id="positions">
+              <table class="table table-bordered table-hover table-striped">
+                <thead>
+                  <th *ngFor="let th of thead"> {{th}} </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let tr of tbody">
+                    <td *ngFor="let th of thead" class="{{tr.teamid == data.idTeam ? 'is-selected' : ''  }}">
+                      {{tr[th]}} </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

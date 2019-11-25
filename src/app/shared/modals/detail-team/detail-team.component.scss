@@ -1,0 +1,69 @@
+.modal-body {
+  height  : auto;
+  position: relative;
+
+  .modal-close {
+    position     : absolute;
+    top          : 0;
+    right        : 0;
+    z-index      : 10;
+    border-radius: 0;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .content-info-team {
+    position  : absolute;
+    height    : 100%;
+    width     : 100%;
+    left      : 0;
+    top       : 0;
+    color     : white;
+    background: rgba(63, 16, 82, 0.904);
+    overflow  : auto;
+
+    .player {
+      width  : 150px;
+      padding: 10px;
+    }
+
+    .player:hover {
+      background   : rgba(0, 0, 0, 0.582);
+      border-radius: 8px;
+    }
+
+    .header-img {
+      img {
+        width: 200px;
+      }
+    }
+  }
+}
+
+.content-info-player {
+  height: auto;
+
+  .bg-player {
+    filter        : blur(5px);
+    -webkit-filter: blur(5px);
+  }
+
+  .float-info-player {
+    position: absolute;
+    height  : 100%;
+    width   : 100%;
+    top     : 0;
+    left    : 0;
+  }
+}
+
+th,
+td {
+  color: white !important;
+}
+
+.is-selected{
+  background: rgb(45, 5, 61);
+}

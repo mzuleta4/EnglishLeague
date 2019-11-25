@@ -1,0 +1,21 @@
+.modal-content {
+    display    : flex;
+    padding-top: 2vh;
+    position   : fixed;
+    z-index    : 100;
+    width      : 100%;
+    height     : 100vh;
+    top        : -500px;
+    left       : 0;
+    background : transparent;
+    opacity    : .4;
+    transition : top .5s, opacity .5s, background 4s;
+    overflow   : auto;
+    overflow-x : hidden;
+
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 0px;
+
+}

@@ -1,0 +1,34 @@
+.team-content {
+    min-height   : 50vh;
+    width        : 90%;
+    border       : 1px solid rgb(214, 214, 214);
+    border-radius: 8px;
+    transition   : all .4s;
+    position: relative;
+    background: rgb(180, 121, 204);
+    .favorite {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        text-shadow: 1px 1px 1px black;
+        color: rgb(255, 217, 0);
+        font-size: 40px;
+    }
+}
+
+
+.team-content:hover {
+    width: 95%;
+    background: #3F1052;
+    color: white !important;
+}
+header{
+ padding: 20px;   
+ background: #3F1052;
+ small{
+     color: white;
+ }
+.icon-premier{
+    height: 100px;
+}
+}
